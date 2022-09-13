@@ -1,6 +1,7 @@
 package com.example.TicTacToeFinal.service;
 
 import com.example.TicTacToeFinal.model.Game;
+import com.example.TicTacToeFinal.model.GameStatus;
 import com.example.TicTacToeFinal.model.Player;
 import org.springframework.stereotype.Service;
 
@@ -11,18 +12,18 @@ import java.util.UUID;
 public class GameService {
 
     public Game createGame (Player player){
-
-        Game game = new Game();
-       game.setBoard(new int[3][3]); //Our array makes up our board (x) (y) enter 3 x 3 as these are the dimensions of the board
-        game.setGameId(UUID.randomUUID().toString()); // UUID also generates random ID
-        game.setPlayer1(player); // to create a game, only need player1 ID when connected to a game (to play) we can enter player2 ID.
-        game.setStatus(GameStatus.NEW); // all new games have status as new
-
-        return game; //  todo: store in sql
+        Game game = new Game(player, GameStatus.NEW);
+        //ask game repo to save
+        return game;
     }
 
-    public Game connectTOGame(Player player2, String gameId){
-        if game.getStatus 
+    public Game connectTOGame(Player player2, Long GameId){
+        //player2 id passed in
+        // find game by gameId
+        //set player 2 to player 2
+        // set game status = in progess
+        // save game
+        // return game
 
     }
 }
