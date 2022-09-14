@@ -1,14 +1,29 @@
 package com.example.TicTacToeFinal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+@Entity(name = "games")
 public class Game {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Player player1;
-    private Player player2;
+
+//    @Column(name = "player1")
+//    private Player player1;
+//    @Column(name = "player2")
+//    private Player player2;
+    @Column(name = "status")
     private GameStatus status;
+
+    @OneToMany(mappedBy = "game")
+    @JsonIgnoreProperties({"game"})
+    private List<Player> players;
 
     private ArrayList<Counter> board;
 //    private int [][] board; //2D array,(horizontal/vertical)
@@ -17,11 +32,12 @@ public class Game {
     private Counter winner; //As each game needs a winner, we'll announce our winner by their counter
 
     public Game(Player player1, GameStatus status) {
-        this.player1 = player1;
-        this.player2 = null; //can join at later time
+
         this.status = status;
         this.board = new ArrayList<Counter>(Arrays.asList(Counter.EMPTY,Counter.EMPTY,Counter.EMPTY,Counter.EMPTY,Counter.EMPTY,Counter.EMPTY,Counter.EMPTY,Counter.EMPTY,Counter.EMPTY));
         this.winner = null;
+        this.players = new ArrayList<Player>();
+        this.players.add(player1);
     }
 
     public Game (){};
@@ -34,20 +50,12 @@ public class Game {
         this.id = id;
     }
 
-    public Player getPlayer1() {
-        return player1;
+    public List<Player> getPlayers() {
+        return players;
     }
 
-    public void setPlayer1(Player player1) {
-        this.player1 = player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
-    }
-
-    public void setPlayer2(Player player2) {
-        this.player2 = player2;
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
 
     public GameStatus getStatus() {

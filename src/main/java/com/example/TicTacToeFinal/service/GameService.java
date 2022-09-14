@@ -41,10 +41,10 @@ public class GameService {
         // find game by gameId
         Game game = gameRepository.findById(gameId).get();
         //set player 2 to player 2
-        game.setPlayer2(player2);
-        //Connect board
+       game.getPlayers().add(player2);
+//        Connect board
         ArrayList<Counter> board= new ArrayList<Counter>();
-        // set game status = in progess
+//        set game status = in progess
         game.setStatus(GameStatus.ONGOING);
         // save game
         gameRepository.save(game);
@@ -54,12 +54,12 @@ public class GameService {
 
     public Game makeMove (long playerId, long gameId, int position){
     //Player 1 is given X, 2 O
-        Player player= playerRepository.findById(playerId).get();
+
         Game game = gameRepository.findById(gameId).get();
-        if (player.getId()==game.getPlayer1().getId()){
+        if (playerId == 0){
             game.getBoard().set(position, Counter.X);
         }
-        else if (player.getId()==game.getPlayer2().getId()){
+        else if (playerId == 1){
             game.getBoard().set(position, Counter.O);
         }
 //        ELSE THROW EXCEPTION (EXTENSION)

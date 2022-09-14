@@ -1,5 +1,7 @@
 package com.example.TicTacToeFinal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity(name="players")
@@ -11,6 +13,13 @@ public class Player {
 
     @Column(name = "username")
     private String username;
+
+    @ManyToOne
+    @JoinColumn(name = "game_id")
+    @JsonIgnoreProperties({"players"})
+    private Game game;
+
+
 
 
     public Player(String username) {
