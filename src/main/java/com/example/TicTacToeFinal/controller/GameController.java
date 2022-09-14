@@ -23,6 +23,6 @@ public class GameController {
 //    )
 
     // POST - new game
-    // PATCH - make move 
+    // PATCH - make move
 
 }
