@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 
@@ -19,9 +21,12 @@ public class GameService {
     @Autowired
     PlayerRepository playerRepository;
 
-    private ArrayList<Integer> playedMoves = new ArrayList<>();
+    private static final int[][] winCombinations = new int[][]{
+            {0,1,2}, {3,4,5}, {6,7,8},
+            {0,3,6}, {1,4,7}, {2,5,8},
+            {0,4,8}, {2,4,6}
+    }; //array of integer arrays [][]
 
-    private int current;
     public Game createGame (long player1id ){  //~do we pass in our own game id or is it created for us?
         Player player1= playerRepository.findById(player1id).get();
         Game game = new Game(player1, GameStatus.NEW);
@@ -45,7 +50,6 @@ public class GameService {
         gameRepository.save(game);
         // return game
         return game;
-// TODO: Make connect to game method
     }
 
     public Game makeMove (long playerId, long gameId, int position){
@@ -58,14 +62,30 @@ public class GameService {
         else if (player.getId()==game.getPlayer2().getId()){
             game.getBoard().set(position, Counter.O);
         }
-
 //        ELSE THROW EXCEPTION (EXTENSION)
 //        check win method
+        game.setWinner(checkWinner(game));
         gameRepository.save(game);
         return game;
-
     };
 
-    public Counter checkwinner(Game game);
-    //top of file we need a private static final: list of winning combinations
+    public Counter checkWinner(Game game) {
+        for (int i = 0; i < winCombinations.length; i++) { //loop through outer array for all win combos
+            if (
+                    game.getBoard().get(winCombinations[i][0]).equals(Counter.EMPTY) || //will check for empty
+                            game.getBoard().get(winCombinations[i][1]).equals(Counter.EMPTY) ||
+                            game.getBoard().get(winCombinations[i][2]).equals(Counter.EMPTY)
+            ) {
+                return null;
+            }
+            if (
+                    game.getBoard().get(winCombinations[i][0]).equals(game.getBoard().get(winCombinations[i][1])) &&
+                            game.getBoard().get(winCombinations[i][1]).equals(game.getBoard().get(winCombinations[i][2]))
+            ) {
+                return game.getBoard().get(winCombinations[i][0]); //return counter EMUN type
+            }
+        }
+        return null;
+    }
+
 }
