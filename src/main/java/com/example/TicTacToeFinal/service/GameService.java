@@ -66,18 +66,19 @@ public class GameService {
 //        ELSE THROW EXCEPTION (EXTENSION)
 //        check win method
         game.setWinner(checkWinner(game));
+        //any winner exists and finish the game
+        if (!(game.getWinner() == null)){
+            game.setStatus(GameStatus.FINISHED);
+        }
         gameRepository.save(game);
         return game;
     };
 
     public Counter checkWinner(Game game) {
+        Counter winner;
         for (int i = 0; i < winCombinations.length; i++) { //loop through outer array for all win combos
-            if (
-                    game.getBoard().get(winCombinations[i][0]).equals(Counter.EMPTY) || //will check for empty
-                            game.getBoard().get(winCombinations[i][1]).equals(Counter.EMPTY) ||
-                            game.getBoard().get(winCombinations[i][2]).equals(Counter.EMPTY)
-            ) {
-                return null;
+            if(game.getBoard().get(winCombinations[i][0]).equals(Counter.EMPTY)){
+                continue;
             }
             if (
                     game.getBoard().get(winCombinations[i][0]).equals(game.getBoard().get(winCombinations[i][1])) &&
@@ -88,6 +89,25 @@ public class GameService {
         }
         return null;
     }
+
+//    public Counter checkWinner(Game game) {
+//        for (int i = 0; i < winCombinations.length; i++) { //loop through outer array for all win combos
+//            if (
+//                    game.getBoard().get(winCombinations[i][0]).equals(Counter.EMPTY) || //will check for empty
+//                            game.getBoard().get(winCombinations[i][1]).equals(Counter.EMPTY) ||
+//                            game.getBoard().get(winCombinations[i][2]).equals(Counter.EMPTY)
+//            ) {
+//                return null;
+//            }
+//            if (
+//                    game.getBoard().get(winCombinations[i][0]).equals(game.getBoard().get(winCombinations[i][1])) &&
+//                            game.getBoard().get(winCombinations[i][1]).equals(game.getBoard().get(winCombinations[i][2]))
+//            ) {
+//                return game.getBoard().get(winCombinations[i][0]); //return counter EMUN type
+//            }
+//        }
+//        return null;
+//    }
     //new method in game service to get all games available
     public List<Game> getAllGames(){
 //  calling findall method from jparepository which returns a list of games

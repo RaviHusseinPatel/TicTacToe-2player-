@@ -29,7 +29,7 @@ public class TicTacToeFinalApplication {
 		Player player = new Player("april");
 		Game game = new Game(player, GameStatus.NEW);
 
-		ArrayList<Counter> winningState = new ArrayList<>(Arrays.asList(Counter.EMPTY, Counter.O, Counter.O, Counter.EMPTY, Counter.EMPTY, Counter.EMPTY, Counter.EMPTY, Counter.EMPTY, Counter.EMPTY));
+		ArrayList<Counter> winningState = new ArrayList<>(Arrays.asList(Counter.X, Counter.X, Counter.X, Counter.EMPTY, Counter.EMPTY, Counter.EMPTY, Counter.EMPTY, Counter.EMPTY, Counter.EMPTY));
 
 		game.setBoard(winningState);
 
