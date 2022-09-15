@@ -44,7 +44,7 @@ public class GameService {
         //set player 2 to player 2
        game.getPlayers().add(player2);
 //        Connect board
-        ArrayList<Counter> board= new ArrayList<Counter>();
+//        ArrayList<Counter> board= new ArrayList<Counter>();
 //        set game status = in progess
         game.setStatus(GameStatus.ONGOING);
         // save game

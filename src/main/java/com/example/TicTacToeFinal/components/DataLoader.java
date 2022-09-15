@@ -20,9 +20,20 @@ public class DataLoader implements ApplicationRunner {
     PlayerRepository playerRepository;
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
         Player player1 = new Player("Ravi");
+        playerRepository.save(player1);
+
+        Player player2 = new Player("Sponge Bob");
+        playerRepository.save(player2);
+
         Game game = new Game(player1,GameStatus.NEW);
+        gameRepository.save(game);
+
+        game.getPlayers().add(player2);
+        // create game, add two players
     }
+    //how to put an Arraylist (currently object)into SQL
 
 
 }

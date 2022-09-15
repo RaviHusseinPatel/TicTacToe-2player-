@@ -31,7 +31,7 @@ public class GameController {
 //    specifying the additional parameters needed in the endpoint (url)
     @GetMapping(value = "/{gameId}/{playerId}")
 //    passing those parameters into the function below
-    public ResponseEntity<Game> connectToGame(@PathVariable Long gameId, Long playerId){
+    public ResponseEntity<Game> connectToGame(@PathVariable Long gameId, @PathVariable Long playerId){
 //        using the parameters to run connectToGame which requires a player id and gameid
 //        this returns a game and we're saving to variable 'game'
         Game game = gameService.connectToGame(playerId, gameId);
@@ -40,8 +40,8 @@ public class GameController {
     };
 
     //makeMove
-    @PatchMapping(value = "/games/{playerId}/{gameId}")
-    public ResponseEntity<Game>makeMove (@PathVariable long playerId,@PathVariable long gameId,@PathVariable int position){
+    @PatchMapping(value = "/{playerId}/{gameId}/{position}")
+    public ResponseEntity<Game> makeMove (@PathVariable long playerId,@PathVariable long gameId,@PathVariable int position){
         Game game = gameService.makeMove(playerId,gameId,position);
         return new ResponseEntity<>(game,HttpStatus.OK);
     }
