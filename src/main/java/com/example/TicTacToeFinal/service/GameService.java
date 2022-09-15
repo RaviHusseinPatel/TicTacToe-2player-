@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -35,7 +36,7 @@ public class GameService {
         return game;
     }
 
-    public Game connectTOGame(long player2id, Long gameId){
+    public Game connectToGame(long player2id, Long gameId){
         //player2 id passed in
         Player player2= playerRepository.findById(player2id).get();
         // find game by gameId
@@ -91,6 +92,10 @@ public class GameService {
     public List<Game> getAllGames(){
 //  calling findall method from jparepository which returns a list of games
         return gameRepository.findAll();
+    }
+
+    public Optional<Game> GameById(long Id){
+        return gameRepository.findById(Id);
     }
 
 }
