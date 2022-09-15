@@ -87,5 +87,10 @@ public class GameService {
         }
         return null;
     }
+    //new method in game service to get all games available
+    public List<Game> getAllGames(){
+//  calling findall method from jparepository which returns a list of games
+        return gameRepository.findAll();
+    }
 
 }
