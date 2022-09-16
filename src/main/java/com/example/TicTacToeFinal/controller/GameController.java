@@ -40,9 +40,9 @@ public class GameController {
     };
 
     //makeMove
-    @PatchMapping(value = "/{playerId}/{gameId}/{position}")
-    public ResponseEntity<Game> makeMove (@PathVariable long playerId,@PathVariable long gameId,@PathVariable int position){
-        Game game = gameService.makeMove(playerId,gameId,position);
+    @PatchMapping(value = "/{playerArrayPosition}/{gameId}/{position}")
+    public ResponseEntity<Game> makeMove (@PathVariable long playerArrayPosition,@PathVariable long gameId,@PathVariable int position){
+        Game game = gameService.makeMove(playerArrayPosition,gameId,position);
         return new ResponseEntity<>(game,HttpStatus.OK);
     }
 

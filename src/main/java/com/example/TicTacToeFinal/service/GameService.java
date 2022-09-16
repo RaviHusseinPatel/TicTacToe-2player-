@@ -53,14 +53,14 @@ public class GameService {
         return game;
     }
 
-    public Game makeMove (long playerId, long gameId, int position){
+    public Game makeMove (long playerArrayPosition, long gameId, int position){
     //Player 1 is given X, 2 O
 
         Game game = gameRepository.findById(gameId).get();
-        if (playerId == 0){
+        if (playerArrayPosition == 0){ //this is the position in the ArrayList (player 1 = 0, player 2 = 1)
             game.getBoard().set(position, Counter.X);
         }
-        else if (playerId == 1){
+        else if (playerArrayPosition == 1){
             game.getBoard().set(position, Counter.O);
         }
 //        ELSE THROW EXCEPTION (EXTENSION)
