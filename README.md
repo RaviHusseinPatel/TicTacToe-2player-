@@ -20,6 +20,18 @@ a second player must enter their name, and the ID of the game they would like to
 Now, they can play the game. They each take turns entering a position on our 1D Array List (which is our board), and the first to satisfy one of the winning combination conditions is the winner of the game. 
 <img width="945" alt="Screenshot 2022-09-15 at 15 15 32" src="https://user-images.githubusercontent.com/109157608/190427278-cd2073fb-c6ac-4ea1-9ca0-b290841f55e5.png">
 
+## Still to do / extensions:
+
+- The players ArrayList in postman is still coming up empty even when players are added to the game.
+- CPU is not currently an option for player 2. 
+
+- Exception thrown for position if taken: The game currently allows users to enter their counters to positions regardless of if the position is 'EMPTY' or is taken by an 'X' or 'O'.
+- Auto players take turns: The game currently does not prompt who's turn it is. Any player can go at any time. 
+- Game play cannot continue when status is FINISHED: game play can currently continue even when there is a winner or a full board. 
+- Game status change to 'FINISHED' when all counter positions are filled even though there is no winner: currently unless there is a winner the status is ONGOING
+- Exception thrown if incorrect gameId/playerId entered: currently just gets an error.
+- Connect to random game: filter method for a player 2 to connect to a random game where the status is NEW. 
+
 # Who made this project?
 
 Ravi, Yingying, April, Khatija

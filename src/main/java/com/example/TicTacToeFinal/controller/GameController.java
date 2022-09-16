@@ -56,27 +56,4 @@ public class GameController {
         }
     }
 
-
-
-    //    no parameters needed so nothing in brackets
-//    @GetMapping()
-////    public ResponseEntity<List<Game>> getAllGames(){
-//////        calling getAllGames which returns all the games as a list and we are saving to 'games'
-////        List<Game> games = gameService.getAllGames();
-//////        return the lsit of games to the user and send a ok response indicating the request was successful
-////        return new ResponseEntity<>(games, HttpStatus.OK);
-////    };
-//    //new method in game service to get all games available
-//    public List<Game> getAllGames(){
-////  calling findall method from jparepository which returns a list of games
-//        return gameRepository.findAll();
-//    }
-
-
-
-
-
-    // POST - new game
-    // PATCH - make move
-
 }
