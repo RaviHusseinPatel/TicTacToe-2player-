@@ -20,13 +20,11 @@ public class Player {
     private Game game;
 
 
-
-
     public Player(String username) {
         this.username = username;
     }
 
-public Player (){}
+    public Player (){}
 
     public long getId() {
         return id;

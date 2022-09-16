@@ -1,3 +1,7 @@
+
+// This doesn't need to be here but it checks in terminal if the winning combinations are working
+// Just change the emun status on line 36 to EMPTY, X or O
+
 package com.example.TicTacToeFinal;
 
 import com.example.TicTacToeFinal.model.Counter;

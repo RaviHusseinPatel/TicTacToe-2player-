@@ -22,13 +22,15 @@ public class GameService {
     @Autowired
     PlayerRepository playerRepository;
 
+    //Below are all the possible win combinations
     private static final int[][] winCombinations = new int[][]{
             {0,1,2}, {3,4,5}, {6,7,8},
             {0,3,6}, {1,4,7}, {2,5,8},
             {0,4,8}, {2,4,6}
     }; //array of integer arrays [][]
 
-    public Game createGame (long player1id ){  //~do we pass in our own game id or is it created for us?
+    // To create the game you only need the playerId that was generated in Postman (or assigned in data loader)
+    public Game createGame (long player1id ){
         Player player1= playerRepository.findById(player1id).get();
         Game game = new Game(player1, GameStatus.NEW);
         gameRepository.save(game);
@@ -39,13 +41,11 @@ public class GameService {
     public Game connectToGame(long player2id, Long gameId){
         //player2 id passed in
         Player player2= playerRepository.findById(player2id).get();
-        // find game by gameId
+        // find game by gameId (use gameId generated in create game method)
         Game game = gameRepository.findById(gameId).get();
         //set player 2 to player 2
-       game.getPlayers().add(player2);
-//        Connect board
-//        ArrayList<Counter> board= new ArrayList<Counter>();
-//        set game status = in progess
+        game.getPlayers().add(player2);
+        // change the game status
         game.setStatus(GameStatus.ONGOING);
         // save game
         gameRepository.save(game);
@@ -53,20 +53,21 @@ public class GameService {
         return game;
     }
 
+    // When making moves the players id is no longer used, you need to use the ArrayList position in  Player
     public Game makeMove (long playerArrayPosition, long gameId, int position){
-    //Player 1 is given X, 2 O
-
-        Game game = gameRepository.findById(gameId).get();
+        Game game = gameRepository.findById(gameId).get(); //find game first
         if (playerArrayPosition == 0){ //this is the position in the ArrayList (player 1 = 0, player 2 = 1)
-            game.getBoard().set(position, Counter.X);
+            game.getBoard().set(position, Counter.X); // player 1 (ArrayList position 0) is auto assigned 'X' counter
         }
-        else if (playerArrayPosition == 1){
-            game.getBoard().set(position, Counter.O);
+        else if (playerArrayPosition == 1){ //player 2 (ArrayList position 1)
+            game.getBoard().set(position, Counter.O); // assigned counter 'O'
         }
-//        ELSE THROW EXCEPTION (EXTENSION)
-//        check win method
+//       ELSE THROW EXCEPTION (EXTENSION - cannot override positions, exits out at 'full' board)
+
+//      After each move we check all winning combinations to see if there is a winner
         game.setWinner(checkWinner(game));
-        //any winner exists and finish the game
+
+        // Any winner found exists the game and status is changed
         if (!(game.getWinner() == null)){
             game.setStatus(GameStatus.FINISHED);
         }
@@ -90,27 +91,9 @@ public class GameService {
         return null;
     }
 
-//    public Counter checkWinner(Game game) {
-//        for (int i = 0; i < winCombinations.length; i++) { //loop through outer array for all win combos
-//            if (
-//                    game.getBoard().get(winCombinations[i][0]).equals(Counter.EMPTY) || //will check for empty
-//                            game.getBoard().get(winCombinations[i][1]).equals(Counter.EMPTY) ||
-//                            game.getBoard().get(winCombinations[i][2]).equals(Counter.EMPTY)
-//            ) {
-//                return null;
-//            }
-//            if (
-//                    game.getBoard().get(winCombinations[i][0]).equals(game.getBoard().get(winCombinations[i][1])) &&
-//                            game.getBoard().get(winCombinations[i][1]).equals(game.getBoard().get(winCombinations[i][2]))
-//            ) {
-//                return game.getBoard().get(winCombinations[i][0]); //return counter EMUN type
-//            }
-//        }
-//        return null;
-//    }
     //new method in game service to get all games available
     public List<Game> getAllGames(){
-//  calling findall method from jparepository which returns a list of games
+//  calling findAll method from jparepository which returns a list of games
         return gameRepository.findAll();
     }
 

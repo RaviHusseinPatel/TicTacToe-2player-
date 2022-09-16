@@ -1,3 +1,7 @@
+
+// NOTE: this can be used if you need to use preloaded players and game
+
+
 //package com.example.TicTacToeFinal.components;
 //
 //import com.example.TicTacToeFinal.model.Game;

@@ -21,31 +21,28 @@ public class GameController {
         this.gameService = gameService;
     }
 
+    //CREATE GAME
     @PostMapping("/start")
     public ResponseEntity<Game> createGame(@RequestParam Long player1Id ){
         Game game = gameService.createGame(player1Id);
         return new ResponseEntity<>(game, HttpStatus.CREATED);
     }
 
-    //    to connect a user to a game,
-//    specifying the additional parameters needed in the endpoint (url)
+    // CONNECT PLAYER2 TO THE EXISTING GAME
     @GetMapping(value = "/{gameId}/{playerId}")
-//    passing those parameters into the function below
     public ResponseEntity<Game> connectToGame(@PathVariable Long gameId, @PathVariable Long playerId){
-//        using the parameters to run connectToGame which requires a player id and gameid
-//        this returns a game and we're saving to variable 'game'
         Game game = gameService.connectToGame(playerId, gameId);
-//        return that game to the user and send a ok response indicating the request was successful
         return new ResponseEntity<>(game, HttpStatus.OK);
     };
 
-    //makeMove
+    // MAKE A MOVE (UPDATE THE BOARD)
     @PatchMapping(value = "/{playerArrayPosition}/{gameId}/{position}")
     public ResponseEntity<Game> makeMove (@PathVariable long playerArrayPosition,@PathVariable long gameId,@PathVariable int position){
         Game game = gameService.makeMove(playerArrayPosition,gameId,position);
         return new ResponseEntity<>(game,HttpStatus.OK);
     }
 
+    // GET GAME BY ID (shows status and winner)
     @GetMapping(value = "/{id}")
     public ResponseEntity<Game> getGameById(@PathVariable long Id){
         Optional<Game> game = gameService.GameById(Id);

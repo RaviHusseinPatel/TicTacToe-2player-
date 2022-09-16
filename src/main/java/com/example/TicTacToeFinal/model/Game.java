@@ -14,10 +14,6 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @Column(name = "player1")
-//    private Player player1;
-//    @Column(name = "player2")
-//    private Player player2;
     @Column(name = "status")
     private GameStatus status;
 
@@ -25,19 +21,17 @@ public class Game {
     @JsonIgnoreProperties({"game"})
     private List<Player> players;
 
-    private ArrayList<Counter> board;
-//    private int [][] board; //2D array,(horizontal/vertical)
-//    NOTE: This will initialize an empty board with two opening values, both 0
-//    Why can't we just use X and 0 instead of 1 and 2? Because our array only takes ints
+    private ArrayList<Counter> board; //board is an ArrayList using Enums (see Counter model)
+
     private Counter winner; //As each game needs a winner, we'll announce our winner by their counter
 
     public Game(Player player1, GameStatus status) {
-
         this.status = status;
         this.board = new ArrayList<Counter>(Arrays.asList(Counter.EMPTY,Counter.EMPTY,Counter.EMPTY,Counter.EMPTY,Counter.EMPTY,Counter.EMPTY,Counter.EMPTY,Counter.EMPTY,Counter.EMPTY));
+        // A blank board will be generated
         this.winner = null;
-        this.players = new ArrayList<Player>();
-        this.players.add(player1);
+        this.players = new ArrayList<Player>(); //currently this doesn't get updated in postman
+        this.players.add(player1); // a game must have at least 1 player
     }
 
     public Game (){};

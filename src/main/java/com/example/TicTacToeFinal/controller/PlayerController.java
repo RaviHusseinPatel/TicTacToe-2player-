@@ -17,6 +17,7 @@ public class PlayerController {
     @Autowired
     PlayerService playerService;
 
+    // ADD A PLAYER (if you don't use data loader)
     @PostMapping()
     public ResponseEntity<Player> createGame(@RequestParam String name ){
         Player player = playerService.createPlayer(name);
