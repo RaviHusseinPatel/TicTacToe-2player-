@@ -17,7 +17,7 @@ Also, we wanted to make a game because it allowed us flexibility when deciding w
 Firstly, someone can start the game by entering their player name, in doing so, they are assigned Player ID, and a game ID is assigned. However, for a game to start, and for our Board Array to be generated,
 a second player must enter their name, and the ID of the game they would like to join.
 
-Now, they can play the game. They each take turns entering a position on our 1D Array List (which is our board), and the first to satisfy one of the winning combination conditions 
+Now, they can play the game. They each take turns entering a position on our 1D Array List (which is our board), and the first to satisfy one of the winning combination conditions is the winner of the game. 
 <img width="945" alt="Screenshot 2022-09-15 at 15 15 32" src="https://user-images.githubusercontent.com/109157608/190427278-cd2073fb-c6ac-4ea1-9ca0-b290841f55e5.png">
 
 # Who made this project?

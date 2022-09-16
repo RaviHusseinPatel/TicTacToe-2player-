@@ -1,6 +1,6 @@
 package com.example.TicTacToeFinal.controller;
 
-import com.example.TicTacToeFinal.model.Game;
+
 import com.example.TicTacToeFinal.model.Player;
 import com.example.TicTacToeFinal.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;

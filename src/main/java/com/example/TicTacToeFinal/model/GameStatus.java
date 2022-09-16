@@ -4,3 +4,4 @@ public enum GameStatus {
 
     NEW, ONGOING, FINISHED
 }
+
