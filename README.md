@@ -27,6 +27,7 @@ Now, they can play the game. They each take turns entering a position on our 1D 
 3. POST request for new game: http://localhost:8080/games/start?player1Id= (insert player 1 id)
 4. GET request to connect to game: http://localhost:8080/games/ (insert game id/second players Array list position)
 5. PATCH request to play a move: http://localhost:8080/games/ (insert player array list position/game id/ position to be player(0-8))
+6. Continue with patch requests, taking it in turns with each player until someone wins (3 in a row either horizontal, vertical or diagonal)
 WATCH THE VIDEO IF UNSURE
 
 ## Still to do / extensions:
