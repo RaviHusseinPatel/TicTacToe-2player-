@@ -20,7 +20,14 @@ a second player must enter their name, and the ID of the game they would like to
 Now, they can play the game. They each take turns entering a position on our 1D Array List (which is our board), and the first to satisfy one of the winning combination conditions is the winner of the game. 
 <img width="945" alt="Screenshot 2022-09-15 at 15 15 32" src="https://user-images.githubusercontent.com/109157608/190427278-cd2073fb-c6ac-4ea1-9ca0-b290841f55e5.png">
 
-Ensure that before run you 'createdb tictactoe' in terminal. 
+## How to play in postman:
+
+1. Ensure that before run you 'createdb tictactoe' in terminal before starting, so you can see your SQL tables updating.
+2. POST request to create a new player: http://localhost:8080/players?name= (insert player name) Do this twice to make 2 players.
+3. POST request for new game: http://localhost:8080/games/start?player1Id= (insert player 1 id)
+4. GET request to connect to game: http://localhost:8080/games/ (insert game id/second players Array list position)
+5. PATCH request to play a move: http://localhost:8080/games/ (insert player array list position/game id/ position to be player(0-8))
+WATCH THE VIDEO IF UNSURE
 
 ## Still to do / extensions:
 
